@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BidMaster - Premium Online Auctions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-gavel"></i> BidMaster
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-fire"></i> Live Auctions</a></li>
+                    <li><a href="#"><i class="fas fa-tag"></i> Categories</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> How It Works</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="auth-buttons">
+                        <button class="btn btn-outline" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                        <button class="btn btn-primary" id="registerBtn"><i class="fas fa-user-plus"></i> Register</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Unique Items & Amazing Deals</h1>
+            <p>Bid on thousands of items in our online auctions. From antiques to electronics, find something for everyone.</p>
+            <button class="btn btn-primary"><i class="fas fa-binoculars"></i> View Live Auctions</button>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category"><i class="fas fa-list"></i> Category</label>
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option value="art">Art & Collectibles</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="vehicles">Vehicles</option>
+                    <option value="furniture">Furniture</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort"><i class="fas fa-sort"></i> Sort By</label>
+                <select id="sort">
+                    <option value="ending">Ending Soonest</option>
+                    <option value="newest">Newly Listed</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="search"><i class="fas fa-search"></i> Search</label>
+                <input type="text" id="search" placeholder="Search items...">
+            </div>
+        </div>
+
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-error" id="errorAlert"></div>
+
+        <div class="auction-grid" id="auctionGrid">
+            <!-- Auction items will be dynamically added here -->
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Login to Your Account</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error-message" id="loginPasswordError">Password is required</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Create an Account</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                    <div class="error-message" id="registerNameError">Please enter your full name</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                    <div class="error-message" id="registerEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                    <div class="error-message" id="registerPasswordError">Password must be at least 8 characters</div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                    <div class="error-message" id="registerConfirmPasswordError">Passwords do not match</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-user-plus"></i> Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bid Modal -->
+    <div class="modal" id="bidModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="bidItemTitle"><i class="fas fa-gavel"></i> Place Your Bid</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div id="bidItemDetails"></div>
+            <form id="bidForm">
+                <input type="hidden" id="bidItemId">
+                <div class="form-group">
+                    <label for="bidAmount">Your Bid ($)</label>
+                    <input type="number" id="bidAmount" required>
+                    <div class="error-message" id="bidAmountError">Bid must be higher than current price</div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-gavel"></i> Place Bid</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About BidMaster</h3>
+                    <p>BidMaster is a premier online auction platform where you can discover unique items and bid on amazing deals from the comfort of your home.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">How to Bid</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: support@bidmaster.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BidMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
