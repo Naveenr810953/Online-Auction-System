@@ -8,7 +8,7 @@ const auctions = [
         image: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0Y2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
         endTime: "2023-12-15T23:59:59",
         bids: 12,
-        category: "jewelry"  
+        category: "jewelry"     
     },
     {
         id: 2,
