@@ -20,7 +20,7 @@ const auctions = [
         bids: 8,
         category: "collectibles"
     },
-    {
+    {   
         id: 3,
         title: "Antique Persian Rug",
         description: "Handwoven silk rug from the early 1900s, 8x10 feet.",
