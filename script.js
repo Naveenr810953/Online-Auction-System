@@ -9,7 +9,7 @@ const auctions = [
         endTime: "2023-12-15T23:59:59",
         bids: 12,
         category: "jewelry"     
-    },   
+    },     
     {
         id: 2,
         title: "Signed Baseball",
