@@ -11,7 +11,7 @@ const auctions = [
         category: "jewelry"     
     },        
     {
-        id: 2,
+        id: 2,  
         title: "Signed Baseball",
         description: "Baseball signed by Babe Ruth, comes with certificate of authenticity.",
         currentBid: 3200,
