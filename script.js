@@ -1,7 +1,7 @@
 // Sample auction data with image URLs
 const auctions = [
     {
-        id: 1,
+        id: 1, 
         title: "Vintage Rolex Watch",
         description: "A classic timepiece from the 1960s in excellent condition.",
         currentBid: 1250,
