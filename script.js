@@ -1,4 +1,4 @@
-// Sample auction data with image URLs
+// Sample auction data with image URLs 
 const auctions = [
     {
         id: 1,   
