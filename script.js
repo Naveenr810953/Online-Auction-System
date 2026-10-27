@@ -1,5 +1,5 @@
 // Sample auction data with image URLs 
-const auctions = [
+const auctions = [ 
     {
         id: 1,   
         title: "Vintage Rolex Watch",
